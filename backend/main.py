@@ -21,7 +21,12 @@ logger = logging.getLogger("sentiment_ai")
 # ---------------------------------------------------------
 # Path resolution for model
 # ---------------------------------------------------------
-def resolve_model_path() -> Path:
+
+def resolve_model_path() -> Union[Path, str]:
+    hf_model_id = os.environ.get("HF_MODEL_ID")
+    if hf_model_id:
+        return hf_model_id
+
     env_path = os.environ.get("MODEL_PATH")
     if env_path and Path(env_path).exists():
         return Path(env_path)
@@ -32,12 +37,13 @@ def resolve_model_path() -> Path:
         base_dir.parent / "models" / "distilbert_final",
         Path("models/distilbert_final").resolve(),
     ]
+
     for candidate in candidates:
         if candidate.exists() and (candidate / "config.json").exists():
             return candidate
 
     raise FileNotFoundError(
-        f"Model directory 'models/distilbert_final' not found in candidate paths: {[str(c) for c in candidates]}"
+        "Model directory 'models/distilbert_final' not found."
     )
 
 
@@ -51,7 +57,7 @@ class ModelService:
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.id2label: Dict[int, str] = {0: "negative", 1: "neutral", 2: "positive"}
 
-    def load(self, model_path: Path):
+    def load(self, model_path: Union[Path, str]):
         logger.info(f"Loading model and tokenizer from: {model_path} onto {self.device}")
         self.tokenizer = AutoTokenizer.from_pretrained(str(model_path))
         self.model = AutoModelForSequenceClassification.from_pretrained(str(model_path))
