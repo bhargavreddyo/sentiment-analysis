@@ -1,3 +1,4 @@
+
 import os
 import sys
 import logging
@@ -5,12 +6,18 @@ from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 
+# Use temporary storage for Hugging Face cache on Vercel
+if os.environ.get("VERCEL"):
+    os.environ.setdefault("HF_HOME", "/tmp/huggingface")
+    os.environ.setdefault("HF_HUB_CACHE", "/tmp/huggingface/hub")
+
 import torch
 from fastapi import Body, FastAPI, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
+
 
 logging.basicConfig(
     level=logging.INFO,
