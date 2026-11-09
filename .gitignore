@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+backend/.venv/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Build outputs
+frontend/dist/
+dist/
+
+# IDE and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+
+# Model weights are hosted separately
+models/distilbert_final/
+
+# TypeScript build cache
+*.tsbuildinfo

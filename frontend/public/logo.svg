@@ -1,0 +1,18 @@
+<svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M24 50 Q 50 36, 76 50" stroke="#536DFE" stroke-width="8" stroke-linecap="round" />
+  <!-- Signal 1: Negative -->
+  <g transform="translate(24, 50)">
+    <rect x="-14" y="-14" width="28" height="28" rx="6" transform="rotate(45)" fill="#DC6262" />
+    <circle cx="0" cy="0" r="4.5" fill="#FFFFFF" />
+  </g>
+  <!-- Signal 2: Neutral -->
+  <g transform="translate(50, 48)">
+    <rect x="-12" y="-12" width="24" height="24" rx="5" fill="#E5A12B" />
+    <line x1="-5" y1="0" x2="5" y2="0" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" />
+  </g>
+  <!-- Signal 3: Positive -->
+  <g transform="translate(76, 50)">
+    <circle cx="0" cy="0" r="14" fill="#15966A" />
+    <circle cx="0" cy="0" r="5" fill="#FFFFFF" />
+  </g>
+</svg>

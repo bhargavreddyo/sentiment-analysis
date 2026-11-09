@@ -1,0 +1,382 @@
+.workspace-shell {
+  --workspace-ink: #fafafa;
+  --workspace-muted: #a7a6a6;
+  --workspace-nav: #b6b5b5;
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: clip;
+  background: #050505;
+  color: var(--workspace-ink);
+  font-family: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.workspace-backdrop {
+  position: fixed;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: #050505;
+}
+
+.workspace-backdrop video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 54%;
+  opacity: .48;
+}
+
+.workspace-backdrop::after {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 5, .82), rgba(5, 5, 5, .56) 52%, rgba(5, 5, 5, .78)),
+    linear-gradient(180deg, rgba(5, 5, 5, .72), rgba(5, 5, 5, .56) 45%, #050505 100%);
+  content: '';
+}
+
+.workspace-header {
+  position: relative;
+  z-index: 5;
+  min-height: 76px;
+  border-bottom: 1px solid rgba(255, 255, 255, .09);
+  background: rgba(5, 5, 5, .72);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.workspace-header-inner {
+  position: relative;
+  display: flex;
+  width: min(100% - 48px, 1380px);
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+
+.workspace-back {
+  display: inline-flex;
+  min-width: 90px;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+  padding: 8px 0;
+  border: 0;
+  background: none;
+  color: var(--workspace-nav);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.workspace-back:hover {
+  color: #fff;
+}
+
+.workspace-nav {
+  position: absolute;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 36px);
+  transform: translateX(-50%);
+}
+
+.workspace-nav button {
+  position: relative;
+  padding: 10px 0;
+  border: 0;
+  background: none;
+  color: var(--workspace-nav);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+
+.workspace-nav button:hover,
+.workspace-nav button.is-active {
+  color: #fff;
+}
+
+.workspace-nav button.is-active::after {
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  left: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, .8);
+  content: '';
+}
+
+.workspace-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.workspace-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 0;
+  border: 0;
+  background: none;
+  color: var(--workspace-muted);
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.workspace-status:disabled {
+  cursor: wait;
+}
+
+.workspace-status-dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: 50%;
+  background: #dc6262;
+  box-shadow: 0 0 8px rgba(220, 98, 98, .28);
+}
+
+.workspace-status-dot.is-ready {
+  background: #83bda5;
+  box-shadow: 0 0 8px rgba(131, 189, 165, .3);
+}
+
+.workspace-main {
+  position: relative;
+  z-index: 1;
+  min-height: calc(100vh - 146px);
+}
+
+.workspace-shell h1,
+.workspace-shell h2,
+.workspace-shell h3 {
+  color: #fafafa !important;
+  font-family: 'Manrope', system-ui, sans-serif;
+  letter-spacing: -.025em;
+}
+
+.workspace-shell h1 {
+  font-size: clamp(26px, 3vw, 38px) !important;
+  font-weight: 400 !important;
+}
+
+.workspace-shell h2 {
+  font-weight: 500 !important;
+}
+
+.workspace-shell [class*="bg-[#FFFFFF]"] {
+  border-color: rgba(255, 255, 255, .11) !important;
+  background-color: rgba(15, 16, 17, .78) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .16) !important;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+
+.workspace-shell [class*="bg-[#F7F8FC]"],
+.workspace-shell [class*="bg-[#E8EAF2]"] {
+  background-color: rgba(255, 255, 255, .045) !important;
+}
+
+.workspace-shell [class*="bg-[#E8F7F0]"] {
+  background-color: rgba(131, 189, 165, .11) !important;
+}
+
+.workspace-shell [class*="bg-[#FEF7E6]"] {
+  background-color: rgba(221, 181, 108, .11) !important;
+}
+
+.workspace-shell [class*="bg-[#FDECEC]"] {
+  background-color: rgba(220, 98, 98, .1) !important;
+}
+
+.workspace-shell [class*="bg-[#536DFE]"],
+.workspace-shell [class*="bg-[#4357D6]"] {
+  background-color: #fff !important;
+  color: #050505 !important;
+}
+
+.workspace-shell [class*="text-[#171D32]"] {
+  color: #f3f3f3 !important;
+}
+
+.workspace-shell [class*="text-[#64748B]"],
+.workspace-shell [class*="text-[#94A3B8]"] {
+  color: #a7a6a6 !important;
+}
+
+.workspace-shell [class*="text-[#536DFE]"] {
+  color: #fafafa !important;
+}
+
+.workspace-shell input[class*="text-[#171D32]"],
+.workspace-shell textarea[class*="text-[#171D32]"],
+.workspace-shell select[class*="text-[#171D32]"] {
+  color: #f5f5f5 !important;
+}
+
+.workspace-shell [class*="border-[#E8EAF2]"] {
+  border-color: rgba(255, 255, 255, .11) !important;
+}
+
+.workspace-shell [class*="divide-[#E8EAF2]"] > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(255, 255, 255, .09) !important;
+}
+
+.workspace-shell [class*="shadow-subtle"] {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, .16) !important;
+}
+
+.workspace-shell input,
+.workspace-shell textarea,
+.workspace-shell select {
+  border-color: rgba(255, 255, 255, .14) !important;
+  background-color: rgba(255, 255, 255, .045) !important;
+  color: #f5f5f5 !important;
+}
+
+.workspace-shell input::placeholder,
+.workspace-shell textarea::placeholder {
+  color: #858585 !important;
+}
+
+.workspace-shell input:focus,
+.workspace-shell textarea:focus,
+.workspace-shell select:focus {
+  border-color: rgba(255, 255, 255, .52) !important;
+  --tw-ring-color: rgba(255, 255, 255, .12) !important;
+}
+
+.workspace-shell button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, .8);
+  outline-offset: 3px;
+}
+
+.workspace-shell table thead tr {
+  background-color: rgba(255, 255, 255, .055) !important;
+}
+
+.workspace-shell [class*="hover:bg-[#F7F8FC]"]:hover,
+.workspace-shell [class*="hover:bg-[#E8EAF2]"]:hover,
+.workspace-shell tr:hover {
+  background-color: rgba(255, 255, 255, .06) !important;
+}
+
+.workspace-shell [class*="bg-[#536DFE]"]:disabled,
+.workspace-shell [class*="bg-[#4357D6]"]:disabled {
+  background-color: rgba(255, 255, 255, .12) !important;
+  color: #777 !important;
+}
+
+.workspace-footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, .09);
+  background: rgba(5, 5, 5, .78);
+  color: var(--workspace-muted);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+
+.workspace-footer [class*="text-[#64748B]"],
+.workspace-footer [class*="text-[#94A3B8]"] {
+  color: #858585 !important;
+}
+
+@media (max-width: 760px) {
+  .workspace-header-inner {
+    width: calc(100% - 32px);
+    min-height: 68px;
+  }
+
+  .workspace-header {
+    min-height: 68px;
+  }
+
+  .workspace-back {
+    min-width: auto;
+    font-size: 12px;
+  }
+
+  .workspace-nav {
+    position: static;
+    gap: clamp(12px, 4vw, 24px);
+    margin-left: auto;
+    padding: 0 12px;
+    transform: none;
+  }
+
+  .workspace-nav button {
+    font-size: 12px;
+  }
+
+  .workspace-header-actions {
+    gap: 10px;
+  }
+
+  .workspace-status-label {
+    display: none;
+  }
+
+  .workspace-main {
+    min-height: calc(100vh - 138px);
+  }
+}
+
+@media (max-width: 520px) {
+  .workspace-header-inner {
+    width: calc(100% - 24px);
+  }
+
+  .workspace-nav {
+    gap: 11px;
+    padding: 0 8px;
+  }
+
+  .workspace-back span {
+    display: none;
+  }
+
+  .workspace-nav button {
+    font-size: 11px;
+  }
+
+  .workspace-header-actions {
+    gap: 8px;
+  }
+
+  .workspace-main {
+    padding-top: 22px !important;
+  }
+
+  .workspace-footer > div > div:last-child {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace-shell *,
+  .workspace-shell *::before,
+  .workspace-shell *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
