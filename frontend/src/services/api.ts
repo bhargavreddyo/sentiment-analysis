@@ -2,7 +2,7 @@ import { HealthResponse, PredictionResult, BatchPredictResponse } from '../types
 
 // In development, Vite proxies /api to http://localhost:8000.
 // Alternatively fallback directly to http://localhost:8000
-const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'https://sentiment-analysis-kappa-six.vercel.app';
 
 class ApiService {
   private async request<T>(endpoint: string, options?: RequestInit): Promise<T> {
